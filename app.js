@@ -13,6 +13,13 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 
+//Middleware
+const GatewayMiddleware = require("./src/middleware/GatewayMiddleware");
+let gateway_middleware = new GatewayMiddleware(config.gateway.secret);
+app.use((req, res, next) => {
+  gateway_middleware.handler(req, res, next);
+});
+
 let UserRoutes = require("./src/routes/user");
 let userRoutes = new UserRoutes(express.Router());
 app.use("/api", userRoutes.build());
