@@ -1,6 +1,8 @@
 module.exports = {
-  secret: "123testings456",
-  secret_public: "123testings456",
+  gateway: {
+    uri: "http://localhost:8082",
+    secret: "OgCOcTeid4Mk0MvPdrug"
+  },
   port: 8081,
   mongo: {
     uri:
