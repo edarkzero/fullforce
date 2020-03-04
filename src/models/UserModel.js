@@ -31,7 +31,7 @@ class UserModel extends Model {
       },
       user_group: {
         type: String,
-        enum: ["admin", "guest"],
+        enum: ["registered", "admin"],
         required: [true, "The group is required"]
       },
       created_at: { type: Date, default: Date.now },
