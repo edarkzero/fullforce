@@ -48,6 +48,12 @@ class UserModel extends Model {
       }
     });
     this.schema.index({ email: 1, username: 1 }, { unique: true });
+    this.schema.virtual("id").get(function() {
+      return this._id.toHexString();
+    });
+    this.schema.set("toJSON", {
+      virtuals: true
+    });
   }
 
   index(query, sort, page, per_page) {
