@@ -17,7 +17,8 @@ class UserModel extends Model {
       },
       username: {
         type: String,
-        required: [true, "The username is required"]
+        required: [true, "The username is required"],
+        index: true
       },
       email: {
         type: String,
@@ -27,7 +28,8 @@ class UserModel extends Model {
             return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v);
           },
           message: props => `${props.value} is not a valid e-mail!`
-        }
+        },
+        index: true
       },
       user_group: {
         type: String,
@@ -45,6 +47,7 @@ class UserModel extends Model {
         default: true
       }
     });
+    this.schema.index({ email: 1, username: 1 }, { unique: true });
   }
 
   index(query, sort, page, per_page) {
